@@ -1,17 +1,20 @@
 from aiogram import Bot, Dispatcher, types
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, WebAppInfo
+from aiogram.enums import ParseMode
 from aiogram.utils import executor
 from dotenv import load_dotenv
 import os
 
 load_dotenv()
 API_TOKEN = os.getenv("BOT_TOKEN")  # Токен из .env-файла
-bot = Bot(token=API_TOKEN)
-dp = Dispatcher(bot)
+
+# Инициализация бота и диспетчера
+bot = Bot(token=API_TOKEN, parse_mode=ParseMode.HTML)
+dp = Dispatcher()  # Создаем диспетчер без аргументов
 
 @dp.message_handler(commands=['start'])
 async def send_welcome(message: types.Message):
-    web_app = WebAppInfo(url='https://ваш-хостинг.com/habits')  # Ваш HTTPS-URL
+    web_app = WebAppInfo(url='https://habits.vercel.app')
     button = KeyboardButton(text='Open the web app', web_app=web_app)
     keyboard = ReplyKeyboardMarkup(resize_keyboard=True)
     keyboard.add(button)
@@ -23,4 +26,4 @@ async def handle_web_app_data(message: types.Message):
     await message.answer(f"Данные от Mini App: {data}")
 
 if __name__ == '__main__':
-    executor.start_polling(dp, skip_updates=True)
+    executor.start_polling(dp, skip_updates=True, bot=bot)
