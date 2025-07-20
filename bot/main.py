@@ -10,7 +10,7 @@ API_TOKEN = os.getenv("BOT_TOKEN")  # Токен из .env-файла
 
 # Инициализация бота и диспетчера
 bot = Bot(token=API_TOKEN, parse_mode=ParseMode.HTML)
-dp = Dispatcher()  # Создаем диспетчер без аргументов
+dp = Dispatcher(bot)  # Создаем диспетчер без аргументов
 
 @dp.message_handler(commands=['start'])
 async def send_welcome(message: types.Message):
@@ -26,4 +26,4 @@ async def handle_web_app_data(message: types.Message):
     await message.answer(f"Данные от Mini App: {data}")
 
 if __name__ == '__main__':
-    executor.start_polling(dp, skip_updates=True, bot=bot)
+    executor.start_polling(dp, skip_updates=True)
