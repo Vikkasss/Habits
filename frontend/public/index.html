@@ -7,19 +7,51 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div id="top-panel">
-    <button id="simple">Calendar</button>
-    <button id="simplee">Habit</button>
-    <button>Add activity</button>
-    <button id="simpleee">All activities</button>
-</div>
-<div id="app">
-        <h1>My tasks</h1>
-        <div id="tasks"></div>
+    <div id="app">
+    <header>
+        <div id="top-panel">
+            <button id="calendar-btn"><i>📅</i> Calendar</button>
+            <button id="habits-btn"><i>✅</i> Habit</button>
+            <button id="add-btn"><i>➕</i> Add activity</button>
+            <button id="tasks-btn"><i>😭</i>Tasks</button>
+            <button id="stats-btn"><i>📊</i>Stats</button>
+        </div>
+    </header>
+        <!-- Add habit View -->
+        <div id="habits-view" class="view active">
+            <div class="header">
+                <h2>My habits</h2>
+                <button class="floating-add-btn" id="add-habit-btn">+</button>
+            </div>
+            <ul id="habits-list" class="habit-list">
+                <button class="rm-btn" id="rm-habit-btn">˟</button>
+            </ul>
+        </div>
 
-    <p id="status">Loading your habits...</p>
-        <button id="action-btn">Добавить задачу</button>
+        <!-- Calendar View -->
+        <div id="calendar-view" class="view">
+            <div class="header">
+                <h2>Calendar</h2>
+                <div>
+                    <span id="current-month">July 2025</span>
+                </div>
+            </div>
+            <div id="calendar-display" class="calendar">
+                <!-- Calendar will be generated here -->
+            </div>
+        </div>
+
+        <div class="empty-state">
+            <div class="empty-state-icon">📋</div>
+            <h3>No Habits Yet</h3>
+            <p>Add your first habit to get started</p>
+            </div>
+        </div>
+
+
     </div>
-    <script src="tma.js"></script>
+    <script src="app.js"></script>
+    <script src="calendar.js"></script>
+    <script src="habit.js"></script>
 </body>
 </html>
