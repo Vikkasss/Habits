@@ -3,6 +3,10 @@ const tg = window.Telegram.WebApp;
 tg.expand();  // Развернуть на весь экран
 tg.MainButton.setText("Сохранить").show();  // Кнопка действия
 
+// Get user info
+const user = tg.initDataUnsafe.user;
+console.log(user.first_name); // Shows user's name
+
 // Пример работы с данными
 document.getElementById('add-task').addEventListener('click', () => {
     const task = prompt("Введите задачу:");
