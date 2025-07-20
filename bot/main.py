@@ -13,7 +13,7 @@ dp = Dispatcher(bot)  # Создаем диспетчер без аргумен�
 
 @dp.message_handler(commands=['start'])
 async def send_welcome(message: types.Message):
-    web_app = WebAppInfo(url='https://habits.vercel.app')
+    web_app = WebAppInfo(url='https://habits-ten-mu.vercel.app/')
     button = KeyboardButton(text='Open the web app', web_app=web_app)
     keyboard = ReplyKeyboardMarkup(resize_keyboard=True)
     keyboard.add(button)
