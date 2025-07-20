@@ -1,24 +1,26 @@
 const tg = window.Telegram.WebApp;
+tg.expand();
+tg.ready();
 
-tg.expand();  // Развернуть на весь экран
-tg.MainButton.setText("Сохранить").show();  // Кнопка действия
 
-// Get user info
 const user = tg.initDataUnsafe.user;
-console.log(user.first_name); // Shows user's name
+if (user) {
+    document.getElementById('status').textContent = `Hello, ${user.first_name}`;
+}
 
-// Пример работы с данными
-document.getElementById('add-task').addEventListener('click', () => {
-    const task = prompt("Введите задачу:");
-    if (task) {
-        const tasksDiv = document.getElementById('tasks');
-        tasksDiv.innerHTML += `<div>${task}</div>`;
-    }
-});
-
-// Отправка данных в бота
-tg.MainButton.onClick(() => {
-    const tasks = Array.from(document.querySelectorAll('#tasks div')).map(t => t.textContent);
-    tg.sendData(JSON.stringify({ tasks: tasks }));
-    tg.close();
+document.getElementById('action-btn').addEventListener('click', () => {
+    tg.showPopup({
+        title: 'New Habit',
+        message: 'Enter your new habit:',
+        buttons: [{
+            id: 'save',
+            type: 'default',
+            text: 'Save'
+        }]
+    }, (btnId) => {
+        if(btnId === 'save') {
+            tg.sendData(JSON.stringify({action: "habit_added"}));
+            tg.close();
+        }
+    });
 });
