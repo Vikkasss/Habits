@@ -1,5 +1,5 @@
-import './calendar'
-import './app'
+// import './calendar'
+// import './app'
 
 const tg = window.Telegram.WebApp;
 tg.expand();
