@@ -1,6 +1,5 @@
 from aiogram import Bot, Dispatcher, types
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, WebAppInfo
-from aiogram.enums import ParseMode
 from aiogram.utils import executor
 from dotenv import load_dotenv
 import os
@@ -9,7 +8,7 @@ load_dotenv()
 API_TOKEN = os.getenv("BOT_TOKEN")  # Токен из .env-файла
 
 # Инициализация бота и диспетчера
-bot = Bot(token=API_TOKEN, parse_mode=ParseMode.HTML)
+bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)  # Создаем диспетчер без аргументов
 
 @dp.message_handler(commands=['start'])
