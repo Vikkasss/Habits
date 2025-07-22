@@ -61,7 +61,7 @@ async function loadHabits() {
 
 async function saveHabits() {
     try {
-        await tg.CloudeStorage.setItem(storageKey.habits, JSON.stringify(habits));
+        await tg.CloudStorage.setItem(storageKey.habits, JSON.stringify(habits));
     } catch (error) {
         console.error('Error saving habits:', error);
         tg.showPopup({
@@ -218,9 +218,9 @@ function switchView(view) {
     buttons[view].classList.add('active');
 
     // Refresh view content if needed
-    if (view === 'activities') {
-        renderAllActivities();
-    }
+    // if (view === 'activities') {
+    //     renderAllActivities();
+    // }
 }
 
 async function saveNewHabit() {
